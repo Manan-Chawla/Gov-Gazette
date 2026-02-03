@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GovGazette</title>
+
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <h1>GovBlog</h1>
+
+    <button id="themeToggle" class="theme-btn">🌙</button>
+
+    <nav class="nav">
+        <a href="/">🏠 Home</a>
+        <a href="/explore">🔍 Explore</a>
+        <a href="/login">🔐 Login</a>
+        <a href="/register">📝 Register</a>
+    </nav>
+
+    {% if employee %}
+      <button class="create-btn" onclick="location.href='/create-blog'">
+        Create Blog
+      </button>
+    {% endif %}
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="rightbar">
+    {% if employee %}
+      <div class="employee-card">
+        <h3>Employee Panel</h3>
+        <p><strong>Name:</strong> {{ employee.name }}</p>
+        <p><strong>ID:</strong> {{ employee.id }}</p>
+
+        <form action="/logout" method="post">
+          <button class="logout-btn">Logout</button>
+        </form>
+      </div>
+    {% endif %}
+  </aside>
+
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
